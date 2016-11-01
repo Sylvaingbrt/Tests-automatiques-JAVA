@@ -154,6 +154,19 @@ public class MyDateTest {
 				h.nextDay();
 			}
 			assertEquals(h, e);
+			//Test du "NULL" de l'override
+			assertFalse(h.equals(null));
+			//Test par rapport à deux object de MyDate qui aurraient le même hashCode
+			MyDate b = new MyDate(1, -1, 1);
+			MyDate c = new MyDate(1, 1, -61);
+			assertFalse(c.equals(b));
+			
+			/*assertEquals(b, c); renvoie l'erreur : 
+			 * java.lang.AssertionError: expected: date.MyDate<date.MyDate@7802> but was: date.MyDate<date.MyDate@7802>
+			 * Je comprends que l'assertEquals soit faut, puisque b et c ne sont pas égaux, mais l'erreur est... surprenante,
+			 * est-ce du au fait que le hashCode de b et c est le même?
+			 * */
+			
 		}
 
 }
